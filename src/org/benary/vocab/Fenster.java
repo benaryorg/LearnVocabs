@@ -188,7 +188,10 @@ public class Fenster extends javax.swing.JFrame
     {//GEN-HEADEREND:event_Menu_Vocab_AddActionPerformed
         new VocabDialog(this,false).setVisible(true);
     }//GEN-LAST:event_Menu_Vocab_AddActionPerformed
-
+    /**
+     * Used to add a Row from a VocabDialog Object
+     * @param dialog The Vocab Dialog from where the Strings should be taken
+     */
     public void add(VocabDialog dialog)
     {
         DefaultTableModel model=(DefaultTableModel)this.Table.getModel();
