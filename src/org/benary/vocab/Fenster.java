@@ -44,11 +44,14 @@ public class Fenster extends javax.swing.JFrame
         jScrollPane1 = new javax.swing.JScrollPane();
         Table = new javax.swing.JTable();
         MenuBar = new javax.swing.JMenuBar();
-        Menu = new javax.swing.JMenu();
+        Menu_Datei = new javax.swing.JMenu();
         Menu_File_Open = new javax.swing.JMenuItem();
         Menu_File_Save = new javax.swing.JMenuItem();
-        Menu_Vocab_Add = new javax.swing.JMenuItem();
         Menu_Program_Close = new javax.swing.JMenuItem();
+        Menu_Zeile = new javax.swing.JMenu();
+        Menu_Vocab_Add = new javax.swing.JMenuItem();
+        Menu_Row_Add = new javax.swing.JMenuItem();
+        Menu_Row_Delete = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Vokabellernprogramm by benaryorg");
@@ -70,19 +73,30 @@ public class Fenster extends javax.swing.JFrame
             {
                 java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean []
+            {
+                false, false
+            };
 
             public Class getColumnClass(int columnIndex)
             {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
+                return canEdit [columnIndex];
+            }
         });
+        Table.setColumnSelectionAllowed(true);
         jScrollPane1.setViewportView(Table);
+        Table.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
         Panel.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(Panel, java.awt.BorderLayout.CENTER);
 
-        Menu.setText("Datei");
+        Menu_Datei.setText("Datei");
 
         Menu_File_Open.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
         Menu_File_Open.setText("Öffnen");
@@ -93,7 +107,7 @@ public class Fenster extends javax.swing.JFrame
                 Menu_File_OpenActionPerformed(evt);
             }
         });
-        Menu.add(Menu_File_Open);
+        Menu_Datei.add(Menu_File_Open);
 
         Menu_File_Save.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         Menu_File_Save.setText("Speichern");
@@ -104,18 +118,7 @@ public class Fenster extends javax.swing.JFrame
                 Menu_File_SaveActionPerformed(evt);
             }
         });
-        Menu.add(Menu_File_Save);
-
-        Menu_Vocab_Add.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
-        Menu_Vocab_Add.setText("Hinzufügen");
-        Menu_Vocab_Add.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                Menu_Vocab_AddActionPerformed(evt);
-            }
-        });
-        Menu.add(Menu_Vocab_Add);
+        Menu_Datei.add(Menu_File_Save);
 
         Menu_Program_Close.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
         Menu_Program_Close.setText("Schließen");
@@ -126,9 +129,46 @@ public class Fenster extends javax.swing.JFrame
                 Menu_Program_CloseActionPerformed(evt);
             }
         });
-        Menu.add(Menu_Program_Close);
+        Menu_Datei.add(Menu_Program_Close);
 
-        MenuBar.add(Menu);
+        MenuBar.add(Menu_Datei);
+
+        Menu_Zeile.setText("Zeile");
+
+        Menu_Vocab_Add.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
+        Menu_Vocab_Add.setText("Hinzufügen");
+        Menu_Vocab_Add.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                Menu_Vocab_AddActionPerformed(evt);
+            }
+        });
+        Menu_Zeile.add(Menu_Vocab_Add);
+
+        Menu_Row_Add.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
+        Menu_Row_Add.setText("Bearbeiten");
+        Menu_Row_Add.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                Menu_Row_AddActionPerformed(evt);
+            }
+        });
+        Menu_Zeile.add(Menu_Row_Add);
+
+        Menu_Row_Delete.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_MASK));
+        Menu_Row_Delete.setText("Löschen");
+        Menu_Row_Delete.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                Menu_Row_DeleteActionPerformed(evt);
+            }
+        });
+        Menu_Zeile.add(Menu_Row_Delete);
+
+        MenuBar.add(Menu_Zeile);
 
         setJMenuBar(MenuBar);
 
@@ -221,6 +261,23 @@ public class Fenster extends javax.swing.JFrame
                 break;
         }
     }//GEN-LAST:event_Menu_Program_CloseActionPerformed
+
+    private void Menu_Row_DeleteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_Menu_Row_DeleteActionPerformed
+    {//GEN-HEADEREND:event_Menu_Row_DeleteActionPerformed
+        int row=this.Table.getSelectedRow();
+        ((DefaultTableModel)this.Table.getModel()).removeRow(row);
+    }//GEN-LAST:event_Menu_Row_DeleteActionPerformed
+
+    private void Menu_Row_AddActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_Menu_Row_AddActionPerformed
+    {//GEN-HEADEREND:event_Menu_Row_AddActionPerformed
+        int row=this.Table.getSelectedRow();
+        DefaultTableModel model=(DefaultTableModel)this.Table.getModel();
+        VocabDialog dialog=new VocabDialog(this,false);
+        dialog.Text_English1.setText((String)model.getValueAt(row,0));
+        dialog.Text_German1.setText((String)model.getValueAt(row,1));
+        dialog.setVisible(true);
+        Menu_Row_DeleteActionPerformed(evt);
+    }//GEN-LAST:event_Menu_Row_AddActionPerformed
     /**
      * Used to add a Row from a VocabDialog Object
      *
@@ -255,24 +312,32 @@ public class Fenster extends javax.swing.JFrame
                 {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         }
         catch(ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(Fenster.class.getName()).log(java.util.logging.Level.SEVERE,null,ex);
+            java.util.logging.Logger.getLogger(Fenster.class
+                .getName()).log(java.util.logging.Level.SEVERE,null,ex);
         }
+
         catch(InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(Fenster.class.getName()).log(java.util.logging.Level.SEVERE,null,ex);
+            java.util.logging.Logger.getLogger(Fenster.class
+                .getName()).log(java.util.logging.Level.SEVERE,null,ex);
         }
+
         catch(IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(Fenster.class.getName()).log(java.util.logging.Level.SEVERE,null,ex);
+            java.util.logging.Logger.getLogger(Fenster.class
+                .getName()).log(java.util.logging.Level.SEVERE,null,ex);
         }
+
         catch(javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(Fenster.class.getName()).log(java.util.logging.Level.SEVERE,null,ex);
+            java.util.logging.Logger.getLogger(Fenster.class
+                .getName()).log(java.util.logging.Level.SEVERE,null,ex);
         }
         //</editor-fold>
 
@@ -287,12 +352,15 @@ public class Fenster extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu Menu;
     private javax.swing.JMenuBar MenuBar;
+    private javax.swing.JMenu Menu_Datei;
     private javax.swing.JMenuItem Menu_File_Open;
     private javax.swing.JMenuItem Menu_File_Save;
     private javax.swing.JMenuItem Menu_Program_Close;
+    private javax.swing.JMenuItem Menu_Row_Add;
+    private javax.swing.JMenuItem Menu_Row_Delete;
     private javax.swing.JMenuItem Menu_Vocab_Add;
+    private javax.swing.JMenu Menu_Zeile;
     private javax.swing.JPanel Panel;
     private javax.swing.JTable Table;
     private javax.swing.JScrollPane jScrollPane1;

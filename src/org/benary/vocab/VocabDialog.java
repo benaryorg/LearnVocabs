@@ -52,7 +52,7 @@ public class VocabDialog extends javax.swing.JDialog
 
         jPanel1.setLayout(new java.awt.GridLayout(0, 2));
 
-        jLabel3.setText("English:");
+        jLabel3.setText("Englisch:");
         jPanel1.add(jLabel3);
 
         Text_English1.addActionListener(new java.awt.event.ActionListener()
@@ -64,7 +64,7 @@ public class VocabDialog extends javax.swing.JDialog
         });
         jPanel1.add(Text_English1);
 
-        jLabel4.setText("German:");
+        jLabel4.setText("Deutsch:");
         jPanel1.add(jLabel4);
 
         Text_German1.addActionListener(new java.awt.event.ActionListener()
@@ -78,7 +78,7 @@ public class VocabDialog extends javax.swing.JDialog
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
-        jButton1.setText("Add");
+        jButton1.setText("Hinzufügen");
         jButton1.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -151,8 +151,8 @@ public class VocabDialog extends javax.swing.JDialog
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Text_English1;
-    private javax.swing.JTextField Text_German1;
+    protected javax.swing.JTextField Text_English1;
+    protected javax.swing.JTextField Text_German1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
