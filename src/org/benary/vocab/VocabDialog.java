@@ -5,8 +5,6 @@
  */
 package org.benary.vocab;
 
-import javax.swing.JFrame;
-
 /**
  *
  * @author benaryorg
@@ -19,7 +17,10 @@ public class VocabDialog extends javax.swing.JDialog
     protected Fenster parent;
 
     /**
-     * Creates new form VocabDialog
+     * Creates new form to enter a new Word
+     *
+     * @param parent The Parent of the VocabDialog Object
+     * @param modal To be honest…. I have no Idea
      */
     public VocabDialog(Fenster parent,boolean modal)
     {
