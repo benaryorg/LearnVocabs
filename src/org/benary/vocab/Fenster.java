@@ -61,7 +61,7 @@ public class Fenster extends javax.swing.JFrame
             },
             new String []
             {
-                "English", "German"
+                "Englisch", "Deutsch"
             }
         )
         {
