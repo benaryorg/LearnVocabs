@@ -48,6 +48,7 @@ public class Fenster extends javax.swing.JFrame
         Menu_File_Open = new javax.swing.JMenuItem();
         Menu_File_Save = new javax.swing.JMenuItem();
         Menu_Vocab_Add = new javax.swing.JMenuItem();
+        Menu_Program_Close = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Vokabellernprogramm by benaryorg");
@@ -116,6 +117,17 @@ public class Fenster extends javax.swing.JFrame
         });
         Menu.add(Menu_Vocab_Add);
 
+        Menu_Program_Close.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        Menu_Program_Close.setText("Schließen");
+        Menu_Program_Close.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                Menu_Program_CloseActionPerformed(evt);
+            }
+        });
+        Menu.add(Menu_Program_Close);
+
         MenuBar.add(Menu);
 
         setJMenuBar(MenuBar);
@@ -127,33 +139,36 @@ public class Fenster extends javax.swing.JFrame
     private void Menu_File_OpenActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_Menu_File_OpenActionPerformed
     {//GEN-HEADEREND:event_Menu_File_OpenActionPerformed
         String path=JOptionPane.showInputDialog(this,"Dateiname:","Datei öffnen",JOptionPane.QUESTION_MESSAGE);
-        try
+        if(path!=null)
         {
-            FileReader file=new FileReader(path);
-            BufferedReader reader=new BufferedReader(file);
-            DefaultTableModel model=(DefaultTableModel)this.Table.getModel();
-            String str;
-            while((str=reader.readLine())!=null)
+            try
             {
-                String[] parts=str.split(";");
-                if(parts.length==2)
+                FileReader file=new FileReader(path);
+                BufferedReader reader=new BufferedReader(file);
+                DefaultTableModel model=(DefaultTableModel)this.Table.getModel();
+                String str;
+                while((str=reader.readLine())!=null)
                 {
-                    model.addRow(new Object[]
+                    String[] parts=str.split(";");
+                    if(parts.length==2)
                     {
-                        parts[0],parts[1]
-                    });
+                        model.addRow(new Object[]
+                        {
+                            parts[0],parts[1]
+                        });
+                    }
                 }
+                reader.close();
+                file.close();
             }
-            reader.close();
-            file.close();
-        }
-        catch(FileNotFoundException ex1)
-        {
-            JOptionPane.showConfirmDialog(this,"Datei nicht gefunden!","Fehler",JOptionPane.DEFAULT_OPTION);
-        }
-        catch(IOException ex2)
-        {
-            JOptionPane.showConfirmDialog(this,"IOException!","Fehler",JOptionPane.DEFAULT_OPTION);
+            catch(FileNotFoundException ex1)
+            {
+                JOptionPane.showConfirmDialog(this,"Datei nicht gefunden!","Fehler",JOptionPane.DEFAULT_OPTION);
+            }
+            catch(IOException ex2)
+            {
+                JOptionPane.showConfirmDialog(this,"IOException!","Fehler",JOptionPane.DEFAULT_OPTION);
+            }
         }
     }//GEN-LAST:event_Menu_File_OpenActionPerformed
 
@@ -168,19 +183,22 @@ public class Fenster extends javax.swing.JFrame
 
         String path=JOptionPane.showInputDialog(this,"Dateiname:","Datei öffnen",JOptionPane.QUESTION_MESSAGE);
 
-        try
+        if(path!=null)
         {
-            FileWriter writer=new FileWriter(new File(path));
-            for(Object obj:list.toArray())
+            try
             {
-                writer.write(((Row)obj).toString()+'\n');
+                FileWriter writer=new FileWriter(new File(path));
+                for(Object obj:list.toArray())
+                {
+                    writer.write(((Row)obj).toString()+'\n');
+                }
+                writer.flush();
+                writer.close();
             }
-            writer.flush();
-            writer.close();
-        }
-        catch(IOException ex)
-        {
-            JOptionPane.showConfirmDialog(this,"IOException!","Fehler",JOptionPane.DEFAULT_OPTION);
+            catch(IOException ex)
+            {
+                JOptionPane.showConfirmDialog(this,"IOException!","Fehler",JOptionPane.DEFAULT_OPTION);
+            }
         }
     }//GEN-LAST:event_Menu_File_SaveActionPerformed
 
@@ -188,8 +206,24 @@ public class Fenster extends javax.swing.JFrame
     {//GEN-HEADEREND:event_Menu_Vocab_AddActionPerformed
         new VocabDialog(this,false).setVisible(true);
     }//GEN-LAST:event_Menu_Vocab_AddActionPerformed
+
+    private void Menu_Program_CloseActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_Menu_Program_CloseActionPerformed
+    {//GEN-HEADEREND:event_Menu_Program_CloseActionPerformed
+        switch(JOptionPane.showConfirmDialog(this,"Soll die Datei gespeichert werden?","Speichern",JOptionPane.YES_NO_CANCEL_OPTION))
+        {
+            case 0:
+                Menu_File_SaveActionPerformed(evt);
+                break;
+            case 1:
+                this.dispose();
+                break;
+            case 2:
+                break;
+        }
+    }//GEN-LAST:event_Menu_Program_CloseActionPerformed
     /**
      * Used to add a Row from a VocabDialog Object
+     *
      * @param dialog The Vocab Dialog from where the Strings should be taken
      */
     public void add(VocabDialog dialog)
@@ -257,6 +291,7 @@ public class Fenster extends javax.swing.JFrame
     private javax.swing.JMenuBar MenuBar;
     private javax.swing.JMenuItem Menu_File_Open;
     private javax.swing.JMenuItem Menu_File_Save;
+    private javax.swing.JMenuItem Menu_Program_Close;
     private javax.swing.JMenuItem Menu_Vocab_Add;
     private javax.swing.JPanel Panel;
     private javax.swing.JTable Table;
