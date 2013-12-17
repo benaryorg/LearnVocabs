@@ -265,18 +265,24 @@ public class Fenster extends javax.swing.JFrame
     private void Menu_Row_DeleteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_Menu_Row_DeleteActionPerformed
     {//GEN-HEADEREND:event_Menu_Row_DeleteActionPerformed
         int row=this.Table.getSelectedRow();
-        ((DefaultTableModel)this.Table.getModel()).removeRow(row);
+        if(row>=0)
+        {
+            ((DefaultTableModel)this.Table.getModel()).removeRow(row);
+        }
     }//GEN-LAST:event_Menu_Row_DeleteActionPerformed
 
     private void Menu_Row_AddActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_Menu_Row_AddActionPerformed
     {//GEN-HEADEREND:event_Menu_Row_AddActionPerformed
         int row=this.Table.getSelectedRow();
-        DefaultTableModel model=(DefaultTableModel)this.Table.getModel();
-        VocabDialog dialog=new VocabDialog(this,false);
-        dialog.Text_English1.setText((String)model.getValueAt(row,0));
-        dialog.Text_German1.setText((String)model.getValueAt(row,1));
-        dialog.setVisible(true);
-        Menu_Row_DeleteActionPerformed(evt);
+        if(row>=0)
+        {
+            DefaultTableModel model=(DefaultTableModel)this.Table.getModel();
+            VocabDialog dialog=new VocabDialog(this,false);
+            dialog.Text_English1.setText((String)model.getValueAt(row,0));
+            dialog.Text_German1.setText((String)model.getValueAt(row,1));
+            dialog.setVisible(true);
+            Menu_Row_DeleteActionPerformed(evt);
+        }
     }//GEN-LAST:event_Menu_Row_AddActionPerformed
     /**
      * Used to add a Row from a VocabDialog Object
