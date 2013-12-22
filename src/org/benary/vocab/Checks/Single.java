@@ -27,7 +27,9 @@ public class Single extends javax.swing.JFrame
      */
     public Single(Window window)
     {
-        Single.main(new String[]{});
+        Single.main(new String[]
+        {
+        });
         this.window=window;
         initComponents();
     }
