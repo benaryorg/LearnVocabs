@@ -80,6 +80,13 @@ public class Single extends javax.swing.JFrame
         jPanel1.add(Submit);
 
         Cancel.setText("Abbrechen");
+        Cancel.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                CancelActionPerformed(evt);
+            }
+        });
         jPanel1.add(Cancel);
 
         getContentPane().add(jPanel1);
@@ -121,6 +128,12 @@ public class Single extends javax.swing.JFrame
         this.setTitle("Score: "+this.right+"/"+this.wrong+"="+((double)this.right/(double)this.wrong));
 
     }//GEN-LAST:event_SubmitActionPerformed
+
+    private void CancelActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_CancelActionPerformed
+    {//GEN-HEADEREND:event_CancelActionPerformed
+        this.dispose();
+        this.window.setVisible(true);
+    }//GEN-LAST:event_CancelActionPerformed
 
     /**
      * @param args the command line arguments
