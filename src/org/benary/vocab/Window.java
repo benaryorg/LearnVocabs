@@ -315,8 +315,8 @@ public class Window extends javax.swing.JFrame
 
     private void Menu_Check_SingleActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_Menu_Check_SingleActionPerformed
     {//GEN-HEADEREND:event_Menu_Check_SingleActionPerformed
-        new Single(this).setVisible(true);
         this.setVisible(false);
+        new Single(this).setVisible(true);
     }//GEN-LAST:event_Menu_Check_SingleActionPerformed
     /**
      * Used to add a Row from a VocabDialog Object
