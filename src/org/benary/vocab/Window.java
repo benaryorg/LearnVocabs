@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.benary.vocab.Checks.Single;
 
 /**
  *
@@ -178,6 +179,13 @@ public class Window extends javax.swing.JFrame
 
         Menu_Check_Single.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         Menu_Check_Single.setText("Einzeln");
+        Menu_Check_Single.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                Menu_Check_SingleActionPerformed(evt);
+            }
+        });
         Menu_Check.add(Menu_Check_Single);
 
         Menu_Check_Connect.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
@@ -304,6 +312,12 @@ public class Window extends javax.swing.JFrame
             Menu_Row_DeleteActionPerformed(evt);
         }
     }//GEN-LAST:event_Menu_Row_AddActionPerformed
+
+    private void Menu_Check_SingleActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_Menu_Check_SingleActionPerformed
+    {//GEN-HEADEREND:event_Menu_Check_SingleActionPerformed
+        new Single(this).setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_Menu_Check_SingleActionPerformed
     /**
      * Used to add a Row from a VocabDialog Object
      *
@@ -391,7 +405,7 @@ public class Window extends javax.swing.JFrame
     private javax.swing.JMenuItem Menu_Vocab_Add;
     private javax.swing.JMenu Menu_Zeile;
     private javax.swing.JPanel Panel;
-    private javax.swing.JTable Table;
+    public javax.swing.JTable Table;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
