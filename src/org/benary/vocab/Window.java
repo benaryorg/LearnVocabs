@@ -19,13 +19,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author benaryorg
  */
-public class Fenster extends javax.swing.JFrame
+public class Window extends javax.swing.JFrame
 {
 
     /**
      * Creates new form fenster
      */
-    public Fenster()
+    public Window()
     {
         initComponents();
     }
@@ -181,9 +181,8 @@ public class Fenster extends javax.swing.JFrame
         String path=JOptionPane.showInputDialog(this,"Dateiname:","Datei öffnen",JOptionPane.QUESTION_MESSAGE);
         if(path!=null)
         {
-            try
+            try(FileReader file=new FileReader(path))
             {
-                FileReader file=new FileReader(path);
                 BufferedReader reader=new BufferedReader(file);
                 DefaultTableModel model=(DefaultTableModel)this.Table.getModel();
                 String str;
@@ -227,13 +226,14 @@ public class Fenster extends javax.swing.JFrame
         {
             try
             {
-                FileWriter writer=new FileWriter(new File(path));
-                for(Object obj:list.toArray())
+                try(FileWriter writer=new FileWriter(new File(path)))
                 {
-                    writer.write(((Row)obj).toString()+'\n');
+                    for(Object obj:list.toArray())
+                    {
+                        writer.write(((Row)obj).toString()+'\n');
+                    }
+                    writer.flush();
                 }
-                writer.flush();
-                writer.close();
             }
             catch(IOException ex)
             {
@@ -324,25 +324,25 @@ public class Fenster extends javax.swing.JFrame
         }
         catch(ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(Fenster.class
+            java.util.logging.Logger.getLogger(Window.class
                 .getName()).log(java.util.logging.Level.SEVERE,null,ex);
         }
 
         catch(InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(Fenster.class
+            java.util.logging.Logger.getLogger(Window.class
                 .getName()).log(java.util.logging.Level.SEVERE,null,ex);
         }
 
         catch(IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(Fenster.class
+            java.util.logging.Logger.getLogger(Window.class
                 .getName()).log(java.util.logging.Level.SEVERE,null,ex);
         }
 
         catch(javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(Fenster.class
+            java.util.logging.Logger.getLogger(Window.class
                 .getName()).log(java.util.logging.Level.SEVERE,null,ex);
         }
         //</editor-fold>
@@ -352,7 +352,7 @@ public class Fenster extends javax.swing.JFrame
         {
             public void run()
             {
-                new Fenster().setVisible(true);
+                new Window().setVisible(true);
             }
         });
     }

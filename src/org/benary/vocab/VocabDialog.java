@@ -14,7 +14,7 @@ public class VocabDialog extends javax.swing.JDialog
 
     protected String en;
     protected String de;
-    protected Fenster parent;
+    protected Window parent;
 
     /**
      * Creates new form to enter a new Word
@@ -22,7 +22,7 @@ public class VocabDialog extends javax.swing.JDialog
      * @param parent The Parent of the VocabDialog Object
      * @param modal To be honest…. I have no Idea
      */
-    public VocabDialog(Fenster parent,boolean modal)
+    public VocabDialog(Window parent,boolean modal)
     {
         super(parent,modal);
         this.parent=parent;
