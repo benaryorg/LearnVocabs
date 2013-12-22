@@ -52,6 +52,10 @@ public class Window extends javax.swing.JFrame
         Menu_Vocab_Add = new javax.swing.JMenuItem();
         Menu_Row_Add = new javax.swing.JMenuItem();
         Menu_Row_Delete = new javax.swing.JMenuItem();
+        Menu_Check = new javax.swing.JMenu();
+        Menu_Check_Single = new javax.swing.JMenuItem();
+        Menu_Check_Connect = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Vokabellernprogramm by benaryorg");
@@ -169,6 +173,22 @@ public class Window extends javax.swing.JFrame
         Menu_Zeile.add(Menu_Row_Delete);
 
         MenuBar.add(Menu_Zeile);
+
+        Menu_Check.setText("jMenu1");
+
+        Menu_Check_Single.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        Menu_Check_Single.setText("Einzeln");
+        Menu_Check.add(Menu_Check_Single);
+
+        Menu_Check_Connect.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        Menu_Check_Connect.setText("Cluster");
+        Menu_Check.add(Menu_Check_Connect);
+
+        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem3.setText("Einzeln");
+        Menu_Check.add(jMenuItem3);
+
+        MenuBar.add(Menu_Check);
 
         setJMenuBar(MenuBar);
 
@@ -359,6 +379,9 @@ public class Window extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar MenuBar;
+    private javax.swing.JMenu Menu_Check;
+    private javax.swing.JMenuItem Menu_Check_Connect;
+    private javax.swing.JMenuItem Menu_Check_Single;
     private javax.swing.JMenu Menu_Datei;
     private javax.swing.JMenuItem Menu_File_Open;
     private javax.swing.JMenuItem Menu_File_Save;
@@ -369,6 +392,7 @@ public class Window extends javax.swing.JFrame
     private javax.swing.JMenu Menu_Zeile;
     private javax.swing.JPanel Panel;
     private javax.swing.JTable Table;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
