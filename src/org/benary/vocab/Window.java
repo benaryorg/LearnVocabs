@@ -174,7 +174,7 @@ public class Window extends javax.swing.JFrame
 
         MenuBar.add(Menu_Zeile);
 
-        Menu_Check.setText("jMenu1");
+        Menu_Check.setText("Check");
 
         Menu_Check_Single.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         Menu_Check_Single.setText("Einzeln");

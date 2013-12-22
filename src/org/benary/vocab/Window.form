@@ -86,7 +86,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="Menu_Check">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jMenu1"/>
+            <Property name="text" type="java.lang.String" value="Check"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="Menu_Check_Single">
