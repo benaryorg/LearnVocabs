@@ -60,6 +60,13 @@ public class Window extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Vokabellernprogramm by benaryorg");
+        addWindowListener(new java.awt.event.WindowAdapter()
+        {
+            public void windowClosing(java.awt.event.WindowEvent evt)
+            {
+                formWindowClosing(evt);
+            }
+        });
 
         Panel.setLayout(new java.awt.BorderLayout());
 
@@ -318,6 +325,21 @@ public class Window extends javax.swing.JFrame
         this.setVisible(false);
         new Single(this).setVisible(true);
     }//GEN-LAST:event_Menu_Check_SingleActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowClosing
+    {//GEN-HEADEREND:event_formWindowClosing
+        switch(JOptionPane.showConfirmDialog(this,"Soll die Datei gespeichert werden?","Speichern",JOptionPane.YES_NO_CANCEL_OPTION))
+        {
+            case 0:
+                Menu_File_SaveActionPerformed(null);
+                break;
+            case 1:
+                this.dispose();
+                break;
+            case 2:
+                break;
+        }
+    }//GEN-LAST:event_formWindowClosing
     /**
      * Used to add a Row from a VocabDialog Object
      *

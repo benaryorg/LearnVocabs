@@ -50,6 +50,13 @@ public class Single extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Check your Vocab!");
+        addWindowListener(new java.awt.event.WindowAdapter()
+        {
+            public void windowClosing(java.awt.event.WindowEvent evt)
+            {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(new java.awt.GridLayout(0, 1));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
@@ -134,6 +141,11 @@ public class Single extends javax.swing.JFrame
         this.dispose();
         this.window.setVisible(true);
     }//GEN-LAST:event_CancelActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowClosing
+    {//GEN-HEADEREND:event_formWindowClosing
+        CancelActionPerformed(null);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
