@@ -322,21 +322,26 @@ public class Window extends javax.swing.JFrame
 
     private void Menu_Check_SingleActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_Menu_Check_SingleActionPerformed
     {//GEN-HEADEREND:event_Menu_Check_SingleActionPerformed
-        this.setVisible(false);
-        new Single(this).setVisible(true);
+        if(((DefaultTableModel)this.Table.getModel()).getRowCount()>0)
+        {
+            this.setVisible(false);
+            new Single(this).setVisible(true);
+        }
+        else
+        {
+            JOptionPane.showConfirmDialog(this,"Keine Vokabeln vorhanden!","Fehler",JOptionPane.DEFAULT_OPTION);
+        }
     }//GEN-LAST:event_Menu_Check_SingleActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowClosing
     {//GEN-HEADEREND:event_formWindowClosing
-        switch(JOptionPane.showConfirmDialog(this,"Soll die Datei gespeichert werden?","Speichern",JOptionPane.YES_NO_CANCEL_OPTION))
+        switch(JOptionPane.showConfirmDialog(this,"Soll die Datei gespeichert werden?","Speichern",JOptionPane.YES_NO_OPTION))
         {
             case 0:
                 Menu_File_SaveActionPerformed(null);
                 break;
             case 1:
                 this.dispose();
-                break;
-            case 2:
                 break;
         }
     }//GEN-LAST:event_formWindowClosing

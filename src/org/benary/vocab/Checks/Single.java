@@ -5,9 +5,11 @@
  */
 package org.benary.vocab.Checks;
 
+import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import org.benary.vocab.Main;
 import org.benary.vocab.Window;
 
 /**
@@ -17,7 +19,10 @@ import org.benary.vocab.Window;
 public class Single extends javax.swing.JFrame
 {
 
+    public final Random rand;
     private final Window window;
+    private final JTable table;
+    private final DefaultTableModel model;
     private int right;
     private int wrong;
 
@@ -30,8 +35,19 @@ public class Single extends javax.swing.JFrame
         Single.main(new String[]
         {
         });
+        this.rand=Main.rand;
         this.window=window;
+        this.table=this.window.Table;
+        this.model=(DefaultTableModel)this.table.getModel();
         initComponents();
+        checkNewWord();
+    }
+
+    public void checkNewWord()
+    {
+        int count=this.model.getRowCount();
+        int row=rand.nextInt(count);
+        this.jLabel1.setText((String)model.getValueAt(row,1));
     }
 
     /**
@@ -127,15 +143,14 @@ public class Single extends javax.swing.JFrame
                     this.right++;
                 }
                 else
-
                 {
                     this.wrong++;
-                    JOptionPane.showConfirmDialog(this,"Falsch!","Falsch!\nEs wäre "+str+" gewesen!",JOptionPane.DEFAULT_OPTION);
+                    JOptionPane.showConfirmDialog(this,"Falsch!\nEs wäre \""+str+"\" gewesen!","Falsch!",JOptionPane.DEFAULT_OPTION);
                 }
             }
         }
-        this.setTitle("Score: "+this.right+"/"+this.wrong+"="+((double)this.right/(double)this.wrong));
-
+        this.setTitle("Score: "+this.right+"/"+this.wrong+"="+String.format("%.3f",(float)this.right/(double)this.wrong));
+        this.checkNewWord();
     }//GEN-LAST:event_SubmitActionPerformed
 
     private void CancelActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_CancelActionPerformed
