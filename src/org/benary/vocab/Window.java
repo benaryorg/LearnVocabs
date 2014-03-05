@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.benary.vocab.Checks.Cluster;
 import org.benary.vocab.Checks.Single;
 
 /**
@@ -197,6 +198,13 @@ public class Window extends javax.swing.JFrame
 
         Menu_Check_Connect.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         Menu_Check_Connect.setText("Cluster");
+        Menu_Check_Connect.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                Menu_Check_ConnectActionPerformed(evt);
+            }
+        });
         Menu_Check.add(Menu_Check_Connect);
 
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
@@ -284,17 +292,7 @@ public class Window extends javax.swing.JFrame
 
     private void Menu_Program_CloseActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_Menu_Program_CloseActionPerformed
     {//GEN-HEADEREND:event_Menu_Program_CloseActionPerformed
-        switch(JOptionPane.showConfirmDialog(this,"Soll die Datei gespeichert werden?","Speichern",JOptionPane.YES_NO_CANCEL_OPTION))
-        {
-            case 0:
-                Menu_File_SaveActionPerformed(evt);
-                break;
-            case 1:
-                this.dispose();
-                break;
-            case 2:
-                break;
-        }
+        //Unused
     }//GEN-LAST:event_Menu_Program_CloseActionPerformed
 
     private void Menu_Row_DeleteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_Menu_Row_DeleteActionPerformed
@@ -345,6 +343,19 @@ public class Window extends javax.swing.JFrame
                 break;
         }
     }//GEN-LAST:event_formWindowClosing
+
+    private void Menu_Check_ConnectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_Menu_Check_ConnectActionPerformed
+    {//GEN-HEADEREND:event_Menu_Check_ConnectActionPerformed
+        if(((DefaultTableModel)this.Table.getModel()).getRowCount()>0)
+        {
+            this.setVisible(false);
+            new Cluster(this).setVisible(true);
+        }
+        else
+        {
+            JOptionPane.showConfirmDialog(this,"Keine Vokabeln vorhanden!","Fehler",JOptionPane.DEFAULT_OPTION);
+        }
+    }//GEN-LAST:event_Menu_Check_ConnectActionPerformed
     /**
      * Used to add a Row from a VocabDialog Object
      *
