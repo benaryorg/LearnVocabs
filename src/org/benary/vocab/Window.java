@@ -223,12 +223,12 @@ public class Window extends javax.swing.JFrame
                 String str;
                 while((str=reader.readLine())!=null)
                 {
-                    String[] parts=str.split(";");
+                    String[] parts=str.trim().split(";");
                     if(parts.length==2)
                     {
                         model.addRow(new Object[]
                         {
-                            parts[0],parts[1]
+                            parts[0].trim(),parts[1].trim()
                         });
                     }
                 }
