@@ -43,7 +43,7 @@ public class Single extends javax.swing.JFrame
         checkNewWord();
     }
 
-    public void checkNewWord()
+    public final void checkNewWord()
     {
         int count=this.model.getRowCount();
         int row=rand.nextInt(count);
@@ -137,15 +137,23 @@ public class Single extends javax.swing.JFrame
         {
             if(((String)model.getValueAt(i,1)).equals(de))
             {
-                String str=(String)model.getValueAt(i,0);
-                if(str.equals(en))
+				boolean found=false;
+                String _str[]=((String)model.getValueAt(i,0)).split("#");
+				for(String str:_str)
+				{
+					if(str.trim().equals(en))
+					{
+						found=true;
+					}
+				}
+                if(found)
                 {
                     this.right++;
                 }
                 else
                 {
                     this.wrong++;
-                    JOptionPane.showConfirmDialog(this,"Falsch!\nEs wäre \""+str+"\" gewesen!","Falsch!",JOptionPane.DEFAULT_OPTION);
+                    JOptionPane.showConfirmDialog(this,"Falsch!\nEs wäre \""+(_str.length<=1?_str[0]:((String)model.getValueAt(i,0)).replace("#","\" oder \""))+"\" gewesen!","Falsch!",JOptionPane.DEFAULT_OPTION);
                 }
             }
         }
