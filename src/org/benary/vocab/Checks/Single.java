@@ -127,7 +127,7 @@ public class Single extends javax.swing.JFrame
 
     private void SubmitActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_SubmitActionPerformed
     {//GEN-HEADEREND:event_SubmitActionPerformed
-        String de=this.jLabel1.getText();
+		String de=this.jLabel1.getText();
         this.jLabel1.setText("");
         String en=this.jTextField1.getText();
         this.jTextField1.setText("");
@@ -154,6 +154,7 @@ public class Single extends javax.swing.JFrame
                 {
                     this.wrong++;
                     JOptionPane.showConfirmDialog(this,"Falsch!\nEs wäre \""+(_str.length<=1?_str[0]:((String)model.getValueAt(i,0)).replace("#","\" oder \""))+"\" gewesen!","Falsch!",JOptionPane.DEFAULT_OPTION);
+					break;
                 }
             }
         }
